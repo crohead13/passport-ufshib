@@ -60,15 +60,14 @@ This module provides a Strategy for the [Passport](http://passportjs.org/) frame
   
   The script creates the UF Shibboleth Strategy, and tells Passport to use it.
 ```
-  var strategy = new ufshib.Strategy({
-    privateKey: privateKey,
-    callbackUrl: loginCallbackUrl,
-    forced: true
-  });
+    var strategy = new ufshib.Strategy({
+        callbackUrl: loginCallbackUrl,
+        forced: true
+    });
 
     passport.use(strategy);
 ```  
-    The name of the strategy is `ufsaml`, but you can use the `.name` property of the Strategy to refer to that.
+    
 
 You will typically want to use sessions to allow users to authenticate only once per-sesion. The next functions are called by Passport to serialize and deserialize the user to the session. As noted in the comments, you would typically want to serialize only the unique ID (`.netID`) and reconstitute the user from your database during deserialzie. But to keep things simple, the script serializes the entire user and deserializes it again.
 ```
