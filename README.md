@@ -8,7 +8,7 @@ This module was cloned from David Stearns https://github.com/drstearns/passport-
 This module currently uses my fork of the [passport-saml](https://github.com/bergie/passport-saml) module located: https://github.com/crohead13/passport-saml
 
 
-You must register your SP with UF IAM group.
+You must register your SP with [UF IAM](http://identity.it.ufl.edu/process/technologies/shibboleth/)
 
 ##Installation
 ------------
@@ -56,7 +56,7 @@ This module provides a Strategy for the [Passport](http://passportjs.org/) frame
   
   The status_403_route opject allows you to have different redirect behavior for api routes.  In angularjs it is not convenient to call an api and get redirected to a login page for an expired session. So this allows you to configure a route that starts with /api, for example, and have it return a 403 instead of a logon page redirect.  This will save you XSS errors in your users browser.  Typically when you recieve an api error with status 403, you would reload the entire page, triggering a redirect to the logon page at the IDP.
   
-  "status_403_route": "/api"
+  `"status_403_route": "/api"`
   
   The script creates the UF Shibboleth Strategy, and tells Passport to use it.
 ```
