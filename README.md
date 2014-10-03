@@ -1,4 +1,4 @@
-##passport-ufshib
+##Passport-UFshib
 ===============
 
 Passport authentication strategy for University of Florida's Shibboleth service.
