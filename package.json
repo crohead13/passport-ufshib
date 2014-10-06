@@ -15,7 +15,7 @@
   "author": "Lee Stevens <cro@ufl.edu> (http://www.ufl.edu)",
   "main": "index.js",
   "dependencies": {
-    "passport-saml": "git://github.com/crohead0.5",
+    "passport-saml": "git://github.com/crohead13/passport-saml.git",
     "passport": "0.2.1",
     "util": "0.10.3",
     "xml2js": "0.4.4",
