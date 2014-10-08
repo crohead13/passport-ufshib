@@ -162,8 +162,8 @@ module.exports.ensureAuth = function(loginUrl) {
         if (req.isAuthenticated())
             return next();
         else {
-            if(req.url.indexOf(shibboleth2.status_403_route) == 0) {
-                res.status(403).send({"status":"not authorized"});
+            if(req.url.indexOf(shibboleth2.status_401_route) == 0) {
+                res.status(401).send({"status":"Unauthorized"});
             }
             else {
                req.session.authRedirectUrl = req.url;
