@@ -54,7 +54,7 @@ This module provides a Strategy for the [Passport](http://passportjs.org/) frame
   
   You must use openssl to create a self signed certificate and private key pair to use to encrypt traffic with the IDP. The paths to where you put your cert/key pair is configurable in the shibboleth2.json file as well.  I put them in another directory ./security located off the root of the server as well.
   
-  The status_401_route opject allows you to have different redirect behavior for api routes.  In angularjs it is not convenient to call an api and get redirected to a login page for an expired session. So this allows you to configure a route that starts with /api, for example, and have it return a 401 instead of a logon page redirect.  This will save you XSS errors in your users browser.  Typically when you recieve an api error with status 401, you would reload the entire page, triggering a redirect to the logon page at the IDP.
+  The status_401_route object allows you to have different redirect behavior for api routes.  In angularjs it is not convenient to call an api and get redirected to a login page for an expired session. So this allows you to configure a route that starts with /api, for example, and have it return a 401 instead of a logon page redirect.  This will save you XSS errors in your users browser.  Typically when you recieve an api error with status 401, you would reload the entire page, triggering a redirect to the logon page at the IDP.
   
   `"status_401_route": "/api"`
   
