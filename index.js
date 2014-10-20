@@ -67,7 +67,7 @@ function convertProfileToUser(profile) {
                 user[niceName] = profile[attr].split("$");
             else
                 user[niceName] = profile[attr];
-            console.log(niceName + "=" + user[niceName] );
+            if (process.env.NODE_ENV === 'development') console.log(niceName + "=" + user[niceName] );
         }
         else
             user[attr]=profile[attr];
