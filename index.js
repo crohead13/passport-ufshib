@@ -159,8 +159,35 @@ module.exports.metadataRoute = function(strategy) {
 */
 module.exports.ensureAuth = function(loginUrl) {
     return function(req, res, next) {
-        if (req.isAuthenticated())
+        if (req.isAuthenticated()) {
+            if(req.cookies.sm) {
+                var then = req.cookies.sm;
+                var now = (new Date).getTime();
+                var diff = now - then;
+                if(diff > (shibboleth2.session_age_millis))
+                {
+                    res.clearCookie('sm');
+                    if(req.url.indexOf(shibboleth2.status_401_route) == 0) {
+                        req.session.destroy();
+                        res.status(401).send({"status":"Unauthorized"});
+                    }
+                    else {
+                       req.logout(); 
+                       req.session.authRedirectUrl = req.url;
+                       res.redirect(loginUrl);
+                    }
+                }
+                else {
+                    var milliseconds = (new Date).getTime();
+                    res.cookie('sm', milliseconds, { httpOnly: true });
+                }
+            }
+            else {
+                var milliseconds = (new Date).getTime();
+                res.cookie('sm', milliseconds, { httpOnly: true });
+            }
             return next();
+        }
         else {
             if(req.url.indexOf(shibboleth2.status_401_route) == 0) {
                 res.status(401).send({"status":"Unauthorized"});
@@ -172,6 +199,7 @@ module.exports.ensureAuth = function(loginUrl) {
         }
     }
 };
+
 
 /*
     Middleware for redirecting back to the originally requested URL after
